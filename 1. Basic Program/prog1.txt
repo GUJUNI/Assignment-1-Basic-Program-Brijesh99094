@@ -1,0 +1,76 @@
+Name : Brijesh Prajapati 
+Roll no : 29
+Subject : Advanced networking 
+class : MCA-II
+
+1.Tcp messages serviece server side
+******************************************************************
+serverEcho.java
+----------------
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+class serverEcho
+{
+      
+        public static void main(String args[])
+        {
+                      try
+                        {
+                         	  int port = Integer.parseInt(args[0]);
+
+	                       ServerSocket ss = new ServerSocket(port);
+                  	     String str;
+	                       int i;
+                  	    Socket s = ss.accept();
+	              while(true)
+                                {
+                        
+                                        InputStream is = s.getInputStream();
+                                         DataInputStream dis = new DataInputStream(is);
+                
+                        
+                                        str=dis.readUTF();
+                                        System.out.println("The Message from Client is ::"+str);
+                                       
+                                }
+                        }catch(Exception e)
+                        {
+                        }
+               
+	}
+        
+}
+
+
+
+output:
+******************************************************************
+Server side : 
+
+C:\Users\asus\Desktop\Master of computer application\sem-2\Advanced networking>javac serverEcho.java
+
+C:\Users\asus\Desktop\Master of computer application\sem-2\Advanced networking>java serverEcho 45001
+The Message from Client is ::this message is going to receive by server
+The Message from Client is ::Another message by the client
+The Message from Client is ::Final message from client side
+
+C:\Users\asus\Desktop\Master of computer application\sem-2\Advanced networking>
+
+
+Client side : 
+
+C:\Users\asus\Desktop\Master of computer application\sem-2\Advanced networking>javac clientEcho.java
+
+C:\Users\asus\Desktop\Master of computer application\sem-2\Advanced networking>java clientEcho.class
+Error: Could not find or load main class clientEcho.class
+Caused by: java.lang.ClassNotFoundException: clientEcho.class
+
+C:\Users\asus\Desktop\Master of computer application\sem-2\Advanced networking>java clientEcho 127.0.0.1 45001
+Enter the Message for Server ::
+this message is going to receive by server
+Another message by the client
+Final message from client side
+^C
+C:\Users\asus\Desktop\Master of computer application\sem-2\Advanced networking>
